@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { MentionIcon } from '@components/molecules'
 import { Text, Title } from '@components/atoms'
 
-import { MentionCardContainer, ContentContainer, HeaderContainer } from './styled'
+import { MentionCardContainer, ContentContainer, TextContainer, MentionUrl, HeaderContainer, MentionDate, MentionContent } from './styled'
 
 class MentionCard extends PureComponent {
 
@@ -16,19 +16,21 @@ class MentionCard extends PureComponent {
         <MentionIcon img={img} icon={icon} />
         <ContentContainer>
           <HeaderContainer>
-            <Text>
+            <MentionUrl>
               {url}
-            </Text>
-            <Text>
+            </MentionUrl>
+            <MentionDate>
               {date}
-            </Text>
+            </MentionDate>
           </HeaderContainer>
-          <Title>
-            {title}
-          </Title>
-          <Text>
-            {content}
-          </Text>
+          <TextContainer>
+            <Title>
+              {title}
+            </Title>
+            <MentionContent>
+              {content}
+            </MentionContent>
+          </TextContainer>
         </ContentContainer>
       </MentionCardContainer>
     )

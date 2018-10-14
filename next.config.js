@@ -5,6 +5,9 @@ module.exports = {
     console.log(config)
    config.resolve.alias = {
       '@components': path.resolve(__dirname, 'src/components'),
+      '@actions': path.resolve(__dirname, 'src/actions'),
+      '@reducers': path.resolve(__dirname, 'src/reducers'),
+      '@lib': path.resolve(__dirname, 'src/lib'),
     }
    return config
  }
