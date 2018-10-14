@@ -1,9 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Img } from '@components/atoms'
+
+import { Avatar, AvatarContainer, MentionIconContainer } from './styled'
 
 const MentionIcon = ({ img, icon }) => (
-  <Img src={img} />
+  <MentionIconContainer>
+    <AvatarContainer>
+      <Avatar src={img} />
+    </AvatarContainer>
+  </MentionIconContainer>
 )
 
 MentionIcon.propTypes = {
