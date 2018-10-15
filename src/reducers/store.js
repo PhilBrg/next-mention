@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import reducer from './reducer'
 
 const InitialState = {
-  Mentions: [],
+  mentions: [],
   isFetching: null,
   error: null
 }

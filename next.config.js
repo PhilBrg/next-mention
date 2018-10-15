@@ -8,6 +8,7 @@ module.exports = {
       '@actions': path.resolve(__dirname, 'src/actions'),
       '@reducers': path.resolve(__dirname, 'src/reducers'),
       '@lib': path.resolve(__dirname, 'src/lib'),
+      '@config': path.resolve(__dirname, 'config/'),
     }
    return config
  }
