@@ -9,11 +9,11 @@ import { MentionCardContainer, ContentContainer, TextContainer, MentionUrl, Head
 class MentionCard extends PureComponent {
 
   render () {
-    const {img, icon, date, url, title, content} = this.props
+    const {img, date, url, title, content} = this.props
 
     return (
       <MentionCardContainer>
-        <MentionIcon img={img} icon={icon} />
+        <MentionIcon img={img} />
         <ContentContainer>
           <HeaderContainer>
             <MentionUrl>

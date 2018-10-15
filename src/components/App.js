@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Axios from 'axios'
-
-import Config from '@config/Config'
 import { MentionList } from '@components/containers'
 import { Mention } from '@actions/'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   componentDidMount () {
-    // FETCH MENTION
-    const bearer = 'Bearer ' + Config.mentionAPI.token
-    const url = Config.mentionAPI.endpoint(Config.mentionAPI.accountId, Config.mentionAPI.alertId, Config.mentionAPI.token)
+    fetch('http://localhost:3001/mentionApi/alert')
+    .then(response => response.json())
+    .then(data => {
+        data.mentions.forEach(mention => {
+          let img = mention.picture_url
+          let url = mention.source_url
+          let date = mention.created_at
+          let content = mention.description_short
+          let title = mention.title
 
-    console.log(bearer)
-    console.log(url)
-    const obj = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': bearer
-      }
-    };
+          this.props.fetchMention({ img, url, date, content, title })
+        })
 
-    fetch(url, obj)
-    .then(response => console.log(response))
-    .catch(error => this.props.fetchFailure())
+    })
   }
 
   render() {

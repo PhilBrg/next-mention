@@ -1,36 +1,39 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { MentionCard } from '@components/organisms'
 
-class MentionList extends PureComponent {
+class MentionList extends Component {
+
+  constructor(props) {
+    super(props)
+  }
 
   render () {
-    const {img, icon, date, url, title, content} = this.props
+
+    const roro = this.props.mentions.map((mention, index) => console.log(mention))
 
     const MentionsCard = this.props.mentions.map((mention, index) => (
-    <li>
       <MentionCard
         key={index}
-        img={img}
-        icon={icon}
-        content={content}
-        title={title}
-        url={url}
-        date={date} />
-    </li>
+        img={mention.img}
+        content={mention.content}
+        title={mention.title}
+        url={mention.url}
+        date={mention.date} />
     ))
 
+
     return (
-      <ul>
+      <div>
         {MentionsCard}
-      </ul>
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  mentions: state.mentions
+  mentions: state
 })
 
 export default connect(mapStateToProps, null)(MentionList)

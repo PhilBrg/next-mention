@@ -3,12 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './reducer'
 
-const InitialState = {
-  mentions: [],
-  isFetching: null,
-  error: null
-}
-
-export function initializeStore (initialState = InitialState) {
-  return createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+export function initializeStore (initialState = []) {
+  return createStore(reducer, initialState, composeWithDevTools())
 }
