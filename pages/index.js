@@ -1,8 +1,28 @@
-import React from 'react'
-import App from '@components/App'
+import React, { Component } from 'react'
+import { FetchMentionsThunk } from '@redux/mentions/thunks'
 
-export default () => (
-  <div>
-    <App />
-  </div>
-)
+import { MentionList } from '@components/containers'
+
+class Index extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  static async getInitialProps ({ reduxStore, req }) {
+    await reduxStore.dispatch(FetchMentionsThunk())
+
+    return {}
+  }
+
+  render () {
+    return (
+      <div>
+        <MentionList />
+      </div>
+    )
+  }
+
+}
+
+export default Index;

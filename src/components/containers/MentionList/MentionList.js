@@ -11,18 +11,15 @@ class MentionList extends Component {
 
   render () {
 
-    const roro = this.props.mentions.map((mention, index) => console.log(mention))
-
     const MentionsCard = this.props.mentions.map((mention, index) => (
       <MentionCard
         key={index}
-        img={mention.img}
-        content={mention.content}
+        img={mention.picture_url}
+        content={mention.description_short}
         title={mention.title}
-        url={mention.url}
-        date={mention.date} />
+        url={mention.source_type}
+        date={mention.published_at} />
     ))
-
 
     return (
       <div>
@@ -33,7 +30,7 @@ class MentionList extends Component {
 }
 
 const mapStateToProps = state => ({
-  mentions: state
+  mentions: state.mentions.cache
 })
 
-export default connect(mapStateToProps, null)(MentionList)
+export default connect(mapStateToProps)(MentionList)
