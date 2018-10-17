@@ -8,6 +8,7 @@ module.exports = {
       '@redux': path.resolve(__dirname, 'src/redux'),
       '@lib': path.resolve(__dirname, 'src/lib'),
       '@api': path.resolve(__dirname, 'api/'),
+      '@static': path.resolve(__dirname, 'static/'),
     }
    return config
  }

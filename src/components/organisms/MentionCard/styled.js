@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Text } from '@components/atoms'
 
-export const MentionCardContainer = styled.div`
+export const MentionCardContainer = styled.section`
   display: flex;
   flex-direction: row;
   border-style: solid;

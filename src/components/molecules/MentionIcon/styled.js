@@ -12,8 +12,9 @@ export const AvatarContainer = styled.div`
     width: 24px;
     border-style: solid;
     border-color: white;
-    border-width: 4px;
-    background-color: blue;
+    border-width: 2px;
+    background-color: white;
+    background-image: url(../../../static/newspaper.svg);
     border-radius: 50%;
   }
 `
@@ -25,4 +26,12 @@ export const MentionIconContainer = styled.div`
 export const Avatar = styled(Img)`
   border-radius: 50%;
   width: 64px;
+`
+
+export const IsRead = styled.span`
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  background-color: blue;
+  border-radius: 50%;
 `

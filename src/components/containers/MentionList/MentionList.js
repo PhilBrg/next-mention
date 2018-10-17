@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { map } from 'lodash'
 
 import { MentionCard } from '@components/organisms'
 
@@ -10,22 +11,17 @@ class MentionList extends Component {
   }
 
   render () {
-
-    const MentionsCard = this.props.mentions.map((mention, index) => (
-      <MentionCard
-        key={index}
-        img={mention.picture_url}
-        content={mention.description_short}
-        title={mention.title}
-        url={mention.source_type}
-        date={mention.published_at} />
+    return map(this.props.mentions, (mention, index) => (
+        <MentionCard
+          key={index}
+          img={mention.picture_url}
+          content={mention.description_short}
+          title={mention.title}
+          url={mention.source_type}
+          date={mention.published_at}
+          isRead={mention.read}
+        />
     ))
-
-    return (
-      <div>
-        {MentionsCard}
-      </div>
-    )
   }
 }
 
