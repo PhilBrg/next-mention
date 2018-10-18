@@ -8,7 +8,7 @@ import { Text, Title } from '@components/atoms'
 
 import { MentionCardContainer, ContentContainer, TextContainer, MentionUrl, HeaderContainer, MentionDate, MentionContent } from './styled'
 
-const formatDate = (date) => moment(date).format('Do MMM');
+const formatDate = (date) => moment(date).format('D MMM')
 const memoizedFormatDate = memoize(formatDate)
 
 class MentionCard extends PureComponent {

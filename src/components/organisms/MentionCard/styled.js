@@ -9,6 +9,7 @@ export const MentionCardContainer = styled.section`
   border-width: 1px;
   border-color: #d3d3d3;
   padding: 24px;
+  margin-bottom: 3px;
 `
 
 export const ContentContainer = styled.div`
