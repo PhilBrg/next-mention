@@ -39,11 +39,11 @@ export const HeaderContainer = styled.div`
 `
 
 export const MentionUrl = styled(Text)`
-  color: ${props => props.isRead ? '#A9A9A9' : '#d3d3d3'};
+  color: ${props => props.isRead ? '#A9A9A9' : '#C0C0C0'};
 `
 
 export const MentionDate = styled(Text)`
-  color: ${props => props.isRead ? '#259ADB' : '#d3d3d3'};
+  color: ${props => props.isRead ? '#259ADB' : '#C0C0C0'};
 `
 
 export const MentionContent = styled(Text)`

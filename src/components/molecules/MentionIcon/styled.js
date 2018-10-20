@@ -23,7 +23,7 @@ export const MentionIconContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding-top: 24px;
+  padding-top: 12px;
 `
 
 export const Avatar = styled(Img)`
