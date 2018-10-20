@@ -17,26 +17,23 @@ class MentionCard extends PureComponent {
   render () {
     const {img, date, url, title, content, isRead, offsets} = this.props
     const dateFormated = memoizedFormatDate(date)
+    const CheckDate = isRead ? <MentionDate isRead>{dateFormated}</MentionDate> : <MentionDate>{dateFormated}</MentionDate>
+    const CheckContent = isRead ? <MentionContent isRead>{content}</MentionContent> : <MentionContent>{content}</MentionContent>
+    const CheckUrl = isRead ? <MentionUrl isRead>{url}</MentionUrl> : <MentionUrl>{url}</MentionUrl>
 
     return (
       <MentionCardContainer>
         <MentionIcon img={img} isRead={isRead} />
         <ContentContainer>
           <HeaderContainer>
-            <MentionUrl>
-              {url}
-            </MentionUrl>
-            <MentionDate>
-              {dateFormated}
-            </MentionDate>
+            {CheckUrl}
+            {CheckDate}
           </HeaderContainer>
           <TextContainer>
             <Title>
               {title}
             </Title>
-            <MentionContent>
-              {content}
-            </MentionContent>
+            {CheckContent}
           </TextContainer>
         </ContentContainer>
       </MentionCardContainer>

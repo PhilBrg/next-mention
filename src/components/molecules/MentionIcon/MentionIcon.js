@@ -6,7 +6,7 @@ import { Avatar, IsRead, AvatarContainer, MentionIconContainer } from './styled'
 class MentionIcon extends Component {
   render() {
     const { img, isRead } = this.props
-    const CheckRead = isRead ? <IsRead /> : <IsRead />
+    const CheckRead = isRead ? <IsRead /> : null
 
     return (
       <MentionIconContainer>
