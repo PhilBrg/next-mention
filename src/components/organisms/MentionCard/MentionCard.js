@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { memoize } from 'lodash'
+import Highlighter from 'react-highlight-words'
 
 import { MentionIcon } from '@components/molecules'
 import { Text, Title } from '@components/atoms'
@@ -10,38 +11,57 @@ import { MentionCardContainer, ContentContainer, TextContainer, MentionUrl, Head
 
 const formatDate = (date) => moment(date).format('D MMM')
 const memoizedFormatDate = memoize(formatDate)
+
 const isMultiple4 = (n) => n % 4
+
+const formatingOffset = (arr) => {
+  let offsetArr = []
+  if (isMultiple4(arr.length) === 0 && arr.length > 1) {
+    for (let i = 0; i < arr.length; i += 4) {
+      let objectRange = {
+        start: arr[i],
+        end: arr[i] + arr[i + 2]
+      }
+
+      offsetArr.push(objectRange)
+    }
+  }
+  return offsetArr
+}
+
+const wordToHighlight = (str, range) => str.substring(range.start, range.end)
 
 class MentionCard extends PureComponent {
 
   render () {
     const {img, date, url, title, content, isRead, offsets} = this.props
+
     const dateFormated = memoizedFormatDate(date)
-    const CheckDate = isRead ? <MentionDate isRead>{dateFormated}</MentionDate> : <MentionDate>{dateFormated}</MentionDate>
-    const CheckContent = isRead ? <MentionContent isRead>{content}</MentionContent> : <MentionContent>{content}</MentionContent>
-    const CheckUrl = isRead ? <MentionUrl isRead>{url}</MentionUrl> : <MentionUrl>{url}</MentionUrl>
+    const offsetTitle = formatingOffset(offsets.title)
+    const offsetContent = formatingOffset(offsets.description_short)
 
-    // description_short
-    //title
-    let offsetTitle = []
+    let wordsTitleHighlighted = [];
+    let wordsContentHighlighted = [];
 
-    if (isMultiple4(offsets.title.length) === 0 && offsets.title.length > 1) {
-      //Things to highligh
-      for (let i = 0; i < offsets.title.length; i += 4) {
-        let objectRange = {
-          start: offsets.title[i],
-          end: offsets.title[i] + offsets.title[i + 2]
-        }
-
-        offsetTitle.push(objectRange)
-      }
+    for (let i in offsetTitle) {
+      wordsTitleHighlighted.push(wordToHighlight(title, offsetTitle[i]))
     }
 
-    console.log('offsetTitle: ', offsetTitle);
-    console.log(title)
+    for (let i in offsetContent) {
+      wordsContentHighlighted.push(wordToHighlight(content, offsetContent[i]))
+    }
 
-
-
+    const CheckDate = isRead ? <MentionDate isRead>{dateFormated}</MentionDate> : <MentionDate>{dateFormated}</MentionDate>
+    const CheckContent = isRead ? <MentionContent isRead>            <Highlighter
+                  searchWords={wordsContentHighlighted}
+                  autoEscape={true}
+                  textToHighlight={content}
+                /></MentionContent> : <MentionContent><Highlighter
+                              searchWords={wordsContentHighlighted}
+                              autoEscape={true}
+                              textToHighlight={content}
+                            /></MentionContent>
+    const CheckUrl = isRead ? <MentionUrl isRead>{url}</MentionUrl> : <MentionUrl>{url}</MentionUrl>
 
     return (
       <MentionCardContainer>
@@ -53,8 +73,13 @@ class MentionCard extends PureComponent {
           </HeaderContainer>
           <TextContainer>
             <Title>
-              {title}
+              <Highlighter
+                            searchWords={wordsContentHighlighted}
+                            autoEscape={true}
+                            textToHighlight={title}
+                          />
             </Title>
+
             {CheckContent}
           </TextContainer>
         </ContentContainer>
