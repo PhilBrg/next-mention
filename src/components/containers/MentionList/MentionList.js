@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { map } from 'lodash'
 
 import { MentionCard } from '@components/organisms'
+import { MentionListContainer } from './styled'
 
 class MentionList extends Component {
 
@@ -11,7 +12,7 @@ class MentionList extends Component {
   }
 
   render () {
-    return map(this.props.mentions, (mention, index) => (
+    return <MentionListContainer>{map(this.props.mentions, (mention, index) => (
         <MentionCard
           key={index}
           img={mention.picture_url}
@@ -20,8 +21,9 @@ class MentionList extends Component {
           url={mention.source_type}
           date={mention.published_at}
           isRead={mention.read}
+          offsets={mention.offsets}
         />
-    ))
+    ))}</MentionListContainer>
   }
 }
 

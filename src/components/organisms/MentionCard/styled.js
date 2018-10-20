@@ -5,11 +5,9 @@ import { Text } from '@components/atoms'
 export const MentionCardContainer = styled.section`
   display: flex;
   flex-direction: row;
-  border-style: solid;
-  border-width: 1px;
+  border-bottom: 1px solid;
   border-color: #d3d3d3;
   padding: 24px;
-  margin-bottom: 3px;
 `
 
 export const ContentContainer = styled.div`

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { memoize } from 'lodash'
+import { Highlightable } from 'highlightable'
 
 import { MentionIcon } from '@components/molecules'
 import { Text, Title } from '@components/atoms'
@@ -14,7 +15,7 @@ const memoizedFormatDate = memoize(formatDate)
 class MentionCard extends PureComponent {
 
   render () {
-    const {img, date, url, title, content, isRead} = this.props
+    const {img, date, url, title, content, isRead, offsets} = this.props
     const dateFormated = memoizedFormatDate(date)
 
     return (

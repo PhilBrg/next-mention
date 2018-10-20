@@ -21,6 +21,8 @@ export const AvatarContainer = styled.div`
 
 export const MentionIconContainer = styled.div`
   height: auto;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Avatar = styled(Img)`
@@ -29,9 +31,13 @@ export const Avatar = styled(Img)`
 `
 
 export const IsRead = styled.span`
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  margin-left: 50%;
+  margin-top: 40%;
   height: 12px;
   width: 12px;
-  background-color: blue;
+  background-color: #259ADB;
   border-radius: 50%;
+
 `
