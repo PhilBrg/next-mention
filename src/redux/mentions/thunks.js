@@ -14,3 +14,7 @@ export const FetchMentionsThunk = () => async (dispatch, getState) => {
     return e
   }
 }
+
+export const MarkMentionReadThunk = (id) => (dispatch, getState) => {
+  dispatch(fetchMentions.markAsRead({ id: id }))
+}

@@ -40,10 +40,24 @@ const fetchMentionsFailure = (state, { payload }) => ({
   }
 })
 
+const markMentionAsRead = (state, { payload }) => {
+  return Object.assign({}, state, {
+    cache: state.cache.map(mention => {
+      if (mention.id === payload.id) {
+        return Object.assign({}, mention, {
+          read: !mention.read
+        })
+      }
+      return mention
+    })
+  })
+}
+
 const reducer = {
   [types.FETCH_MENTIONS_PENDING]: fetchMentionsPending,
   [types.FETCH_MENTIONS_FAILURE]: fetchMentionsFailure,
-  [types.FETCH_MENTIONS_SUCCESS]: fetchMentionsSuccess
+  [types.FETCH_MENTIONS_SUCCESS]: fetchMentionsSuccess,
+  [types.MARK_MENTION_READ]: markMentionAsRead
 }
 
 export default handleActions(reducer, initialState)
