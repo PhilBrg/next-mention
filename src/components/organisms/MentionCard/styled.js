@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 import { Text } from '@components/atoms'
 
 export const MentionCardContainer = styled.section`
@@ -11,8 +12,8 @@ export const MentionCardContainer = styled.section`
   :last-child {
     border-bottom: none;
   }
+  cursor: pointer;
 `
-
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;

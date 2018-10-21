@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { memoize } from 'lodash'
+import { connect } from 'react-redux';
 import Highlighter from 'react-highlight-words'
+
 
 import { MentionIcon } from '@components/molecules'
 import { Text, Title } from '@components/atoms'
@@ -32,9 +34,12 @@ const formatingOffset = (arr) => {
 const wordToHighlight = (str, range) => str.substring(range.start, range.end)
 
 class MentionCard extends PureComponent {
+  constructor(props) {
+    super(props)
+  }
 
   render () {
-    const {img, date, url, title, content, isRead, offsets} = this.props
+    const {img, date, url, title, content, isRead, offsets, onClick} = this.props
 
     const dateFormated = memoizedFormatDate(date)
     const offsetTitle = formatingOffset(offsets.title)
@@ -52,19 +57,12 @@ class MentionCard extends PureComponent {
     }
 
     const CheckDate = isRead ? <MentionDate isRead>{dateFormated}</MentionDate> : <MentionDate>{dateFormated}</MentionDate>
-    const CheckContent = isRead ? <MentionContent isRead>            <Highlighter
-                  searchWords={wordsContentHighlighted}
-                  autoEscape={true}
-                  textToHighlight={content}
-                /></MentionContent> : <MentionContent><Highlighter
-                              searchWords={wordsContentHighlighted}
-                              autoEscape={true}
-                              textToHighlight={content}
-                            /></MentionContent>
+    const CheckContent = isRead ? <MentionContent isRead><Highlighter highlightStyle={{ 'background-color': '#fff8a9' }} searchWords={wordsContentHighlighted} autoEscape={true} textToHighlight={content} /></MentionContent>
+                                : <MentionContent><Highlighter searchWords={wordsContentHighlighted} highlightStyle={{ 'background-color': '#fff8a9' }} autoEscape={true} textToHighlight={content} /></MentionContent>
     const CheckUrl = isRead ? <MentionUrl isRead>{url}</MentionUrl> : <MentionUrl>{url}</MentionUrl>
 
     return (
-      <MentionCardContainer>
+      <MentionCardContainer onClick={onClick}>
         <MentionIcon img={img} isRead={isRead} />
         <ContentContainer>
           <HeaderContainer>
@@ -73,13 +71,8 @@ class MentionCard extends PureComponent {
           </HeaderContainer>
           <TextContainer>
             <Title>
-              <Highlighter
-                            searchWords={wordsContentHighlighted}
-                            autoEscape={true}
-                            textToHighlight={title}
-                          />
+              <Highlighter searchWords={wordsContentHighlighted} highlightStyle={{ 'background-color': '#fff8a9' }} autoEscape={true} textToHighlight={title} />
             </Title>
-
             {CheckContent}
           </TextContainer>
         </ContentContainer>
@@ -89,6 +82,7 @@ class MentionCard extends PureComponent {
 }
 
 MentionCard.propTypes = {
+  onClick: PropTypes.func,
   date: PropTypes.string,
   url: PropTypes.string,
   title: PropTypes.string,
